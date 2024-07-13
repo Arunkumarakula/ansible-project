@@ -46,6 +46,44 @@
       dest: /app
       remote_src: yes
 
+  - name: install dependencies
+    ansible.builtin.command: npm install
+     args:
+       chdir: /app
+
+  - name: copy catalogue service
+    ansible.builtin.copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service
+
+  - name: daemon reload
+    ansible.builtin.systemd:
+      daemon-reload: true
+
+  - name: copy mongo repo to yum.repo.d
+    ansible.built.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: Install mongodb
+   ansible.builtin.yum:
+     name: mongodb-org-shell
+     state: installed
+  - name: load catalogue data
+    ansible.builtin.command: mongo --host 172.31.25.165 </app/schema/catalogue.js
+
+  - name: restart catalogue
+    ansible.builtin.service:
+     name: catalogue
+     state: restart
+     enabled: yes
+
+
+    
+
+
+
+
 
 
 
