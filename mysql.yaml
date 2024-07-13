@@ -17,9 +17,9 @@
 
   - name: restart mysql
     ansible.builtin.service:
-     name: mysqld
-     state: started
-     enbaled: true
+      name: mysqld
+      state: started
+      enbaled: true
 
   - name: setup mysql password
     ansible.builtin.command: mysql-secure-installation --set-root-pass Roboshop@1
