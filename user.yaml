@@ -70,6 +70,7 @@
     ansible.builtin.yum:
      name: mongodb-org-shell
      state: installed
+     
   - name: load user data
     ansible.builtin.command: mongo --host 172.31.80.62 < /app/schema/user.js
 
