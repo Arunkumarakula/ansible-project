@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: setup NPM source
-    ansible.builtin.shell: "curl -SL https://rpm.noderesource.com/setup_lts.x"
+    ansible.builtin.shell: "curl -sL https://rpm.noderesource.com/setup_lts.x"
 
   - name: Install nodejs
     ansible.builtin.yum:
@@ -28,4 +28,4 @@
 
   - name: print the directory stats
     ansible.builtin.debug:
-     msg: "output : {{directory}}"
+      msg: "output : {{directory}}"
