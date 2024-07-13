@@ -1,0 +1,12 @@
+[Unit]
+Description = Cart Service
+Pythonlife.in
+[Service]
+User=roboshop
+Environment=REDIS_HOST=172.31.83.62
+Environment=CATALOGUE_HOST=172.31.80.62
+Environment=CATALOGUE_PORT=8080
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=cart
+[Install]
+WantedBy=multi-user.target
