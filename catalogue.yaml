@@ -35,7 +35,7 @@
       path: /app
       state: directory
 
- - name: download catalogue artifact
+  - name: download catalogue artifact
     ansible.builtin.get_url:
       url: https://roboshop-buils.s3.amazonaws.com/catalogue.zip
       dest: /tmp
