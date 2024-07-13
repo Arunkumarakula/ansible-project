@@ -18,7 +18,7 @@
   - name: restart mysql
     ansible.builtin.service:
      name: mysqld
-     state: restarted
+     state: started
      enbaled: true
 
   - name: setup mysql password
