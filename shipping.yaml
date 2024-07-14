@@ -61,7 +61,6 @@
     ansible.builtin.yum:
      name: mysql
      state: installed
-
   - name: load mysql schema
     ansible.builtin.command: mysql -h 172.31.86.216 -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
