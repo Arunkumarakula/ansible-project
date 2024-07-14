@@ -4,8 +4,8 @@
   tasks:
   - name: install maven
     ansible.builtin.yum:
-     name: maven
-     state: installed
+      name: maven
+      state: installed
 
   - name: check roboshop user exist or not
     ansible.builtin.command: id roboshop
@@ -16,12 +16,13 @@
     name: create user roboshop
     become: yes
     ansible.builtin.user:
-     name: roboshop
+      name: roboshop
 
   - name: check /app directory is exist or  not
     ansible.builtin.stat:
-     path: /app
+      path: /app
     register: directory
+
   - name: print the directory stats
     ansible.builtin.debug:
       msg: "output : {{directory}}"
@@ -41,12 +42,12 @@
   - name: maven package
     ansible.builtin.command: mvn clean package
     args:
-       chdir: /app
+      chdir: /app
  
   - name: rename jar file
     ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
     args:
-       chdir: /app
+      chdir: /app
 
   - name: copy shipping service
     ansible.builtin.copy:
@@ -55,16 +56,17 @@
 
   - name: daemon reload
     ansible.builtin.systemd:
-      daemon-reload: true
+      daemon_reload: true
 
   - name: install mysql client
     ansible.builtin.yum:
-     name: mysql
-     state: installed
+      name: mysql
+      state: installed
+
   - name: load mysql schema
     ansible.builtin.shell: mysql -h 172.31.86.216 -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
-  - name: restart mysql
+  - name: restart shipping
     ansible.builtin.service:
       name: shipping
       state: restarted
